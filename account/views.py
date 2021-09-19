@@ -19,7 +19,8 @@ def login_backend(request):
         
         return redirect('home/'+str(request.user.id))
     else:
-        return redirect('error')
+        error = 1
+        return render(request,'login.html',{'error':error})
 
 def logout_backend(request):
     auth.logout(request)
@@ -46,4 +47,5 @@ def signup_backend(request):
         auth.login(request, user)
         return redirect('/home/'+str(request.user.id))
     else:
-        return redirect('error')
+        error = 1
+        return render(request,'login.html',{'error':error})
