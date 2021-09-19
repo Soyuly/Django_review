@@ -11,41 +11,16 @@ def login(request):
 
 
 def login_backend(request):
-    username = request.POST['id']
-    password = request.POST['password']
-    user = auth.authenticate(request, username=username, password=password)
-    if user is not None:
-        auth.login(request, user)
-        
-        return redirect('home/'+str(request.user.id))
-    else:
-        error = 1
-        return render(request,'login.html',{'error':error})
+    #로그인 백엔드 구현하는 공간
+    print('코드 입력 부분입니다! print문 지우고 입력해주세요~')
 
 def logout_backend(request):
-    auth.logout(request)
-    return redirect('home_logout')
+    #로그아웃 백엔드 구현하는 공간
+    print('코드 입력 부분입니다! print문 지우고 입력해주세요~')
 
 def signup(request):
     return render(request,'signup.html')
 
 def signup_backend(request):
-    account = Account()
-    account.name = request.POST['name']
-    account.grade = request.POST['grade']
-    account.major = request.POST['major']
-
-    account.user = User.objects.create_user(
-        username=request.POST['id'], password=request.POST['password'])
-
-    account.save()
-    print('회원가입')
-    user = auth.authenticate(
-    request, username=request.POST['id'], password=request.POST['password'])
-
-    if account is not None:
-        auth.login(request, user)
-        return redirect('/home/'+str(request.user.id))
-    else:
-        error = 1
-        return render(request,'login.html',{'error':error})
+    #회원가입 백엔드 구현하는 공간
+    print('코드 입력 부분입니다! print문 지우고 입력해주세요~')

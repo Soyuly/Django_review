@@ -14,5 +14,3 @@ def home(request, user_id):
 def home_logout(request):
     return render(request,'home.html')
 
-def error(request):
-    return render(request, 'error.html')

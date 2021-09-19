@@ -22,6 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home_logout, name='home_logout'),
     path('home/<str:user_id>', views.home, name='home' ),
-    path('error/', views.error, name='error'),
     path('', include('account.urls')),
 ]
