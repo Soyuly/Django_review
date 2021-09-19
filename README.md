@@ -119,7 +119,8 @@ def signup_backend(request):
         auth.login(request, user)
         return redirect('/home/'+str(request.user.id))
     else:
-        return redirect('error')
+        error = 1
+        return render(request,'login.html',{'error':error})
  ```
  + **코드분석**
     + 위의 account.name grade major은 signup.html의 인풋박스에서 값을 입력 받기 위해 적어놨습니다.(CRUD랑 똑같은 원리라 생략 하겠습니다.)
@@ -142,7 +143,8 @@ def login_backend(request):
         auth.login(request, user)
         return redirect('home/'+str(request.user.id))
     else:
-        return redirect('error')
+        error = 1
+        return render(request,'login.html',{'error':error})
 ```
 + signup_backend에서 설명한 것과 코드 똑같습니다!
 
@@ -159,3 +161,7 @@ def logout_backend(request):
 ```
 ###### 완전 간단합니다~ 로그아웃에 관한 django 공식 문서 참고하세요!
 ![image](https://user-images.githubusercontent.com/86656269/133918247-300a0cbe-55df-4b00-b3a0-d8deb6f57a47.png)
+
+< 참고하면 유용한 문서 https://docs.djangoproject.com/en/3.2/topics/auth/default/
+
+### 👏모두 고생 하셨습니다~~
