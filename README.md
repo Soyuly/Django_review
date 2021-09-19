@@ -162,6 +162,6 @@ def logout_backend(request):
 ###### 완전 간단합니다~ 로그아웃에 관한 django 공식 문서 참고하세요!
 ![image](https://user-images.githubusercontent.com/86656269/133918247-300a0cbe-55df-4b00-b3a0-d8deb6f57a47.png)
 
-< 참고하면 유용한 문서 https://docs.djangoproject.com/en/3.2/topics/auth/default/
+> 참고하면 유용한 문서 https://docs.djangoproject.com/en/3.2/topics/auth/default/
 
-### 👏모두 고생 하셨습니다~~
+### 👏 감사합니다!! 모두 고생 하셨습니다~~
