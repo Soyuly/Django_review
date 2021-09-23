@@ -1,7 +1,9 @@
 # 🦁 Django 로그인과 템플릿 상속
 
 ### 1. 템플릿 상속하기
-
+> **템플릿 상속이란?** <br>
+> html 문서 중 기본 뼈대가 되는 문서를 기본 템플릿으로 정하고, 이는 공통의 코드이므로 다른 문서에서 기본 템플릿의 코드가 필요하면 상속하여 가져다 쓰는 것. <br>
+> **한마디로 중복된 코드를 관리하여 코드 간결화가 목적**
 + **config 폴더 내부에 teamplates 폴더를 만들고 nav.html 파일을 추가한 후 다음의 코드를 nav.html에 복붙 합니다.**<br>
 
 ```html
@@ -80,7 +82,36 @@ TEMPLATES = [
 ![image](https://user-images.githubusercontent.com/86656269/133916455-360c5c74-04a5-49e9-b36c-66c742f353cb.png)
 
 ***
-### 2-1. 회원가입 구현하기(★★★)
+
+### 2. url 관리하기
+> 프로젝트를 진행하다보면 만들어야 하는 url도 많아지고, 이로인해 가독성이 떨어질 수도 있습니다. <br>
+> ** 그래서 저희는 각각의 앱마다 따로 urls.py를 만들어줘서 코드를 효율적으로 괸리해보겠습니다! **
+#### ✔ urls.py 코드를 다시 치려면 오류도 많이 뜨고, 시간이 많이 걸리니 눈으로 보는걸로 대체 하겠습니다.
++ account 폴더에 urls.py 파일을 하나 생성하고, config/urls.py내용을 그대로 복붙 합니다!.<br>
+``` python
+from django.contrib import admin
+from django.urls import path
+from review import views
+
+urlpatterns = [
+
+]
+```
+#### 이때 까먹지말고 from review import views 에서 account를 현재 앱 이름으로 바꿔줘야합니다! 안 바꿔주면 해당 앱의 views.py에서 인식을 못합니다.
+![image](https://user-images.githubusercontent.com/86656269/134496232-df5f31ec-888e-443d-baec-ae7b53fe4b5b.png)
++ 프로젝트에서 account에 추가한 urls.py를 인식하게 하기 위해서 기존에 있었던 찐 config/urls.py 파일에 들어가서 다음 코드를 추가합니다.
+```python
+path('', include('account.urls')),
+``` 
+> 다음 코드는 account 폴더에 있는 urls.py를 불러오는 명령어 입니다.<br>
+> 앞에 ''는 경로인데, 만약에 account의 urls.py 에서 'login/'이라는 경로가 존재하면 http://127.0.0.1:8000/login이 되는거고,<br>
+> 만약에 path('')가 아니라 path('test/')로 설정하고 account의 urls.py 에서 'login/'이라는 경로가 존재하면 들어가는 홈페이지는 http://127.0.0.1:8000/test/login이 되는원리 입니다.
+> 하나 더 예를 들자면 path('likelion/')으로 하고 account의 urls.py 에서 'login/'이라는 경로가 존재하면 http://127.0.0.1:8000/likelion/login이 됩니다.
+***
+### 3-1. 회원가입 구현하기(★★★)
+> 기존에는 장고에서 기본적으로 제공하는 회원가입 폼을 사용해서 만드는걸 배웠는데습니다. 하지만 프로젝트를 진행하면서 CSS를 반강제적으로 넣게 되는데
+> 폼을 사용하면 css 적용하는데 한계가 있으므로, 저희가 이쁘게 css로 꾸민 회원가입 홈페이지에서 직접 회원가입 폼을 적용시켜보겠습니다. <br>
+> **Django 공식문서와 specy 프로젝트할 때, 가은이가 회원가입/로그인 구현했던 코드들을 참고 하였습니당**
 #### ⚠ 시간 단축과 편의를 위해 urls.py 작성 과정이 생략 되어 있습니다. 
 + **account앱에 models.py는 없애면 시간이 많이 걸려서 사전에 작성 시켰는데 한번 분석 해봅시다!**
     + user에서 1:1관계 필드는 저도 데이터베이스를 안배워서 잘 이해를 못했는데, 밑에 인용구를 통해 어느정도 이해했습니다.
@@ -132,7 +163,7 @@ def signup_backend(request):
 
 > 부가적으로 urls.py에서 signup_backend를 실행 시키기 위해 작성시키고, 이러한 url을 form태그에 적용하는 과정이 생략 되어 있습니다. 코드 보시면 쉽게 아실 수 있을겁니다!!
 
-### 2-2. 로그인 구현하기(★★★)
+### 3-2. 로그인 구현하기(★★)
 + **account/views.py에 들어가서 본격적으로 로그인을 구현하기 위해 login_backend 함수부분에 아래코드를 복사해서 붙여놓습니다.**
 ``` python
 def login_backend(request):
@@ -152,7 +183,7 @@ def login_backend(request):
 ![image](https://user-images.githubusercontent.com/86656269/133918073-601ba919-bb42-45b0-9bf9-9de1465dc3b9.png)
 ###### 이렇게 나오면 성공!
 
-### 2-3. 로그아웃 구현하기(★★★)
+### 3-3. 로그아웃 구현하기(★)
 + **account/views.py에 들어가서 본격적으로 로그인을 구현하기 위해 logout_backend 함수부분에 아래코드를 복사해서 붙여놓습니다.**
 ``` python
 def logout_backend(request):
