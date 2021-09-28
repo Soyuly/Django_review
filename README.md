@@ -127,7 +127,13 @@ class Account(models.Model):
     grade = models.CharField(max_length=100)
     major = models.CharField(max_length=100)
 ```
-
++ **account/views.py에 들어가서 다음을 import 해줍니다.
+```python
+from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+```
 + **account/views.py에 들어가서 본격적으로 SignUp을 구현하기 위해 signup_backend 함수부분에 아래코드를 복사해서 붙여놓습니다.**
 ```python
 def signup_backend(request):
