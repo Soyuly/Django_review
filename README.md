@@ -77,6 +77,12 @@ TEMPLATES = [
 + **그 후 nav.html에 중복 시키기 위해서 맨 밑줄에 {% block content %} {% endblock %} 부분을 추가해줍니다.**
 ![image](https://user-images.githubusercontent.com/86656269/133916200-d7eb15f7-6036-4e05-9743-4aadf67aca50.png)
 
++ **이제 네비바 적용을 원하는 홈페이지에 들어가서 네비바 즉 아까만든 템플릿을 적용시켜보겠습니다.**<br>
+>  **review/templates/home.html에 들어가서 {% extends 'nav.html' %}을 무조건 제일 첫줄에 적어 줍니다.**<br>
+  **이후 마지막 줄에 {% endblock %}을 적어줌으로써 템플릿 상속을 시켜줍니다**
+  
+![image](https://user-images.githubusercontent.com/86656269/135008212-2486b1c8-cef7-4e39-b2b0-c5a08cea55dd.png)
+
 + **작업이 끝났으면 runserver를 해서 화면이 정상적으로 뜨는지 확인해봅시다ㅎㅎ**
 (잘 되시면 버튼 클릭해보세요!!)
 ![image](https://user-images.githubusercontent.com/86656269/133916455-360c5c74-04a5-49e9-b36c-66c742f353cb.png)
@@ -85,7 +91,7 @@ TEMPLATES = [
 
 ### 2. url 관리하기
 > 프로젝트를 진행하다보면 만들어야 하는 url도 많아지고, 이로인해 가독성이 떨어질 수도 있습니다. <br>
-> ** 그래서 저희는 각각의 앱마다 따로 urls.py를 만들어줘서 코드를 효율적으로 괸리해보겠습니다! **
+> **그래서 저희는 각각의 앱마다 따로 urls.py를 만들어줘서 코드를 효율적으로 괸리해보겠습니다!**
 #### ✔ urls.py 코드를 다시 치려면 오류도 많이 뜨고, 시간이 많이 걸리니 눈으로 보는걸로 대체 하겠습니다.
 + account 폴더에 urls.py 파일을 하나 생성하고, config/urls.py내용을 그대로 복붙 합니다!.<br>
 ``` python
@@ -127,7 +133,7 @@ class Account(models.Model):
     grade = models.CharField(max_length=100)
     major = models.CharField(max_length=100)
 ```
-+ **account/views.py에 들어가서 다음을 import 해줍니다.
++ **account/views.py에 들어가서 다음을 import 해줍니다.**
 ```python
 from django.contrib.auth.models import User
 from django.contrib import auth
